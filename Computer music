@@ -1,0 +1,61 @@
+from tkinter import *
+import webbrowser
+
+def play_music():
+    # Implement logic to play music from mobile phone
+
+def stop_music():
+    # Implement logic to stop music
+
+def play_previous_song():
+    # Implement logic to play previous song
+
+def play_next_song():
+    # Implement logic to play next song
+
+def open_settings():
+    settings_page()
+
+def open_support():
+    webbrowser.open("https://t.me/ZX_MUSIC_channel")
+
+def settings_page():
+    settings_window = Toplevel(root)
+    settings_window.title("Settings")
+    # Add settings content here
+
+def support_page():
+    support_window = Toplevel(root)
+    support_window.title("Support")
+    webbrowser.open("https://t.me/ZX_MUSIC_channel")
+
+root = Tk()
+root.title("乙乂・卍・MUSIC")
+root.geometry("400x300")
+
+# Create buttons for play, stop and previous/next song
+play_button = Button(root, text="Play", command=play_music)
+play_button.pack(side=LEFT, padx=5)
+
+stop_button = Button(root, text="Stop", command=stop_music)
+stop_button.pack(side=LEFT, padx=5)
+
+previous_button = Button(root, text="Previous", command=play_previous_song)
+previous_button.pack(side=LEFT, padx=5)
+
+next_button = Button(root, text="Next", command=play_next_song)
+next_button.pack(side=LEFT, padx=5)
+
+# Create label for playing time
+playing_time_label = Label(root, text="Playing Time: 00:00")
+playing_time_label.pack(pady=10)
+
+# Create settings button
+settings_button = Button(root, text="Settings", command=open_settings)
+settings_button.pack(side=TOP, padx=5)
+
+# Create support button
+support_button = Button(root, text="Support", command=open_support)
+support_button.pack(side=BOTTOM, padx=5)
+
+root.mainloop()
