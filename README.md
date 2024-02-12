@@ -118,4 +118,46 @@ class MusicApp(App):
 # Run the application
 if __name__ == '__main__':
     MusicApp().run()
-        
+        from kivy.uix.dropdown import DropDown
+from kivy.uix.button import Button
+
+# Create a custom class for the song item in the playlist
+class SongItem(ButtonBehavior, BoxLayout):
+    def __init__(self, **kwargs):
+        super(SongItem, self).__init__(**kwargs)
+
+        # Create the layout for the song item
+        layout = GridLayout(cols=2)
+        layout.spacing = [10, 0]
+
+        # Create a label for the song name
+        self.song_label = Label(text=self.text)
+
+        # Create an image for the three-dot menu icon
+        menu_icon = Image(source='three_dot_menu.png')
+
+        layout.add_widget(self.song_label)
+        layout.add_widget(menu_icon)
+
+        self.dropdown = DropDown()
+        edit_name_button = Button(text='Edit Name', size_hint=(1, 0.5))
+        edit_name_button.bind(on_release=self.edit_name)
+        self.dropdown.add_widget(edit_name_button)
+
+        second_option_button = Button(text='Option 2', size_hint=(1, 0.5))
+        second_option_button.bind(on_release=self.perform_action2)
+        self.dropdown.add_widget(second_option_button)
+
+        menu_icon.bind(on_release=self.dropdown.open)
+
+        self.add_widget(layout)
+
+    # Function to edit the name of the song
+    def edit_name(self, instance):
+        popup = Popup(title='Edit Name', content=TextInput(text=self.song_label.text, multiline=False),
+                      size_hint=(None, None), size=(400, 200))
+        popup.open()
+
+    # Function to perform action 2
+    def perform_action2(self, instance):
+        print("
